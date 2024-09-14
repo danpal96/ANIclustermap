@@ -18,9 +18,8 @@ from matplotlib.colors import BoundaryNorm, LinearSegmentedColormap, is_color_li
 from scipy.cluster.hierarchy import ClusterNode
 from seaborn.matrix import ClusterGrid
 
+import aniclustermap
 from aniclustermap.logger import get_logger
-
-__version__ = "1.4.0"
 
 logger = get_logger("aniclustermap")
 
@@ -476,7 +475,7 @@ def get_args() -> argparse.Namespace:
         "-v",
         "--version",
         action="version",
-        version=f"v{__version__}",
+        version=f"v{aniclustermap.__version__}",
         help="Print version information",
     )
     parser.add_argument(

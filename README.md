@@ -20,7 +20,7 @@ Fig2. ANI clustermap between all-vs-all 18 genomes. If no similarity detected by
 
 ## Installation
 
-`Python 3.8 or later` is required for installation.
+`Python 3.9 or later` is required for installation.
 [fastANI](https://github.com/ParBLiSS/FastANI) or [skani](https://github.com/bluenote-1577/skani) is required to calculate ANI.  
 
 **Install bioconda package:**

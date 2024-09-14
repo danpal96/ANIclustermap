@@ -281,7 +281,7 @@ def parse_ani_matrix(matrix_file: Path) -> pd.DataFrame:
             ani_values.extend([0] * (genome_num - len(ani_values)))
             ani_values_list.append(ani_values)
 
-    df = pd.DataFrame(data=ani_values_list, columns=names, index=names)
+    df = pd.DataFrame(data=ani_values_list, columns=names, index=names, dtype="float64")
     for i in range(genome_num):
         df.iat[i, i] = 100
     for i, name in enumerate(names):

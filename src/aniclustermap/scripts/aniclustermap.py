@@ -154,22 +154,24 @@ def cli(
     if debug:
         tmpdir = outdir / "tmp"
         tmpdir.mkdir(exist_ok=True)
-    ani_matrix_tsv_file = outdir / f"{mode}_matrix.tsv"
+    ani_matrix_tsv_file = outdir / f"{mode.value}_matrix.tsv"
     if not ani_matrix_tsv_file.exists() or overwrite:
-        logger.info(f"Run {mode} between all-vs-all genomes")
+        logger.info(f"Run {mode.value} between all-vs-all genomes")
         AniCalcTool = dict(fastani=FastAni, skani=SkAni)[mode.value]
         ani_matrix_df = AniCalcTool(indir, tmpdir).run(thread_num=thread_num)
         ani_matrix_df.to_csv(ani_matrix_tsv_file, sep="\t", index=False)
         logger.info("Write all-vs-all genomes ANI matrix result")
         logger.info(f"=> {ani_matrix_tsv_file}")
     else:
-        logger.info(f"Previous {mode} matrix result found (={ani_matrix_tsv_file})")
-        logger.info(f"Skip {mode} run")
+        logger.info(
+            f"Previous {mode.value} matrix result found (={ani_matrix_tsv_file})"
+        )
+        logger.info(f"Skip {mode.value} run")
         ani_matrix_df = pd.read_csv(ani_matrix_tsv_file, sep="\t", index_col=False)
         ani_matrix_df = ani_matrix_df.set_index(ani_matrix_df.columns)
 
     # Hierarchical clustering ANI matrix
-    logger.info(f"Clustering {mode} ANI matrix by scipy UPGMA method")
+    logger.info(f"Clustering {mode.value} ANI matrix by scipy UPGMA method")
     linkage = hc.linkage(ani_matrix_df, method="average")
     dendrogram_newick_file = outdir / "ANIclustermap_dendrogram.nwk"
     to_newick_tree(ani_matrix_df, linkage, dendrogram_newick_file)

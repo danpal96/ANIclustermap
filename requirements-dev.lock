@@ -41,7 +41,7 @@ fonttools==4.57.0
     # via matplotlib
 identify==2.6.10
     # via pre-commit
-importlib-metadata==8.6.1
+importlib-metadata==8.7.0
     # via jupyter-client
 importlib-resources==6.5.2
     # via matplotlib
@@ -126,7 +126,7 @@ pyzmq==26.4.0
     # via jupyter-client
 rich==14.0.0
     # via typer
-ruff==0.11.6
+ruff==0.11.8
 scipy==1.13.1
     # via aniclustermap
 seaborn==0.13.2
@@ -150,7 +150,7 @@ traitlets==5.14.3
     # via jupyter-client
     # via jupyter-core
     # via matplotlib-inline
-typer==0.15.2
+typer==0.15.3
     # via aniclustermap
 typing-extensions==4.13.2
     # via ipython

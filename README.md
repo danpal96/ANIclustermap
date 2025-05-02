@@ -77,7 +77,7 @@ Description of ANIclustermap's automated workflow.
 
 ### Example Command
 
-7 genomes minimal dataset. Click [here](https://github.com/moshi4/ANIclustermap/wiki/dataset/minimal_dataset.zip) to download dataset (Size=3.6MB).
+7 genomes minimal dataset. Click [here](https://github.com/moshi4/ANIclustermap/raw/main/example/input/minimal_dataset.zip) to download dataset.
 
     ANIclustermap -i ./minimal_dataset/ -o ./ANIclustermap_result
 
@@ -97,7 +97,7 @@ ANIclustermap outputs 3 types of result files.
 ## Gallery
 
 Example gallery of 33 genomes normal dataset.  
-If you want to try it for yourself, click [here](https://github.com/moshi4/ANIclustermap/wiki/dataset/normal_dataset.zip) to donwload dataset (Size=63.5MB).
+If you want to try it for yourself, click [here](https://github.com/moshi4/ANIclustermap/raw/main/example/input/normal_dataset.zip) to donwload dataset.
 
 **Normal parameter:**
 

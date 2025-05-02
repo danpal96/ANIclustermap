@@ -1,22 +1,30 @@
-import os
+import shlex
+import subprocess as sp
 from pathlib import Path
 
-from aniclustermap import aniclustermap
+
+def test_aniclustermap_cli_fastani_mode(genome_fasta_dir: Path, tmp_path: Path):
+    """Test ANIclustermap CLI (mode=fastani)"""
+    aniclustermap_cli(genome_fasta_dir, tmp_path, "fastani")
 
 
-def test_aniclustermap(genome_fasta_dir: Path, tmp_path: Path):
-    """Check only no errors on runtime"""
-    cpu_num = os.cpu_count()
-    thread_num = cpu_num - 1 if cpu_num is not None and cpu_num != 1 else 1
+def test_aniclustermap_cli_skani_mode(genome_fasta_dir: Path, tmp_path: Path):
+    """Test ANIclustermap CLI (mode=skani)"""
+    aniclustermap_cli(genome_fasta_dir, tmp_path, "skani")
 
-    aniclustermap.run(
-        indir=genome_fasta_dir,
-        outdir=tmp_path,
-        thread_num=thread_num,
-        fig_width=10,
-        fig_height=10,
-        dendrogram_ratio=0.15,
-        cmap_colors=["blue", "red"],
-        cmap_gamma=1.0,
-        annotation=False,
-    )
+
+def aniclustermap_cli(genome_fasta_dir: Path, tmp_path: Path, mode: str):
+    """Run ANIclustermap CLI"""
+    cmd = f"ANIclustermap -i {genome_fasta_dir} -o {tmp_path} --mode {mode}"
+    cmd_args = shlex.split(cmd)
+    result = sp.run(cmd_args)
+    assert result.returncode == 0
+    outfile_names = [
+        "ANIclustermap.png",
+        "ANIclustermap.svg",
+        "ANIclustermap_dendrogram.nwk",
+        "ANIclustermap_matrix.tsv",
+        "aniclustermap.log",
+    ]
+    for outfile_name in outfile_names:
+        assert (tmp_path / outfile_name).exists()

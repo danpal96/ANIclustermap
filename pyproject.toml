@@ -1,11 +1,9 @@
-[tool.poetry]
+[project]
 name = "aniclustermap"
-version = "1.4.0"
+dynamic = ["version"]
 description = "A tool for drawing ANI clustermap between all-vs-all microbial genomes"
-authors = ["moshi"]
+authors = [{ name = "moshi4" }]
 license = "MIT"
-homepage = "https://github.com/moshi4/ANIclustermap/"
-repository = "https://github.com/moshi4/ANIclustermap/"
 readme = "README.md"
 keywords = [
     "bioinformatics",
@@ -18,48 +16,66 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
-include = ["tests"]
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=1.4.1",
+    "seaborn>=0.11.2",
+    "scipy>=1.9.0",
+    "typer>=0.15.2",
+]
+
+[project.urls]
+repository = "https://github.com/moshi4/ANIclustermap/"
+
+[project.scripts]
+ANIclustermap = "aniclustermap.scripts.aniclustermap:app"
+
+[tool.hatch.version]
+path = "src/aniclustermap/__init__.py"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "ruff>=0.4.0",
+    "pre-commit>=3.5.0",
+    "pytest>=8.0.0",
+    "pytest-cov>=4.0.0",
+    "ipykernel>=6.13.0",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--cov=src --tb=long --cov-report=xml --cov-report=term"
+addopts = "--cov=src --tb=long -vv --cov-report=xml --cov-report=term"
 testpaths = ["tests"]
 
-# Lint Rules: https://beta.ruff.rs/docs/rules
 [tool.ruff]
-select = ["E", "F", "W", "I", "D", "B"]
-ignore = [
-    "D100",
-    "D101",
-    "D104",
-    "D105",
-    "D205",
-    "D400",
-    "D401",
-    "D403",
-    "D415",
-    "B905",
-]
-src = ["src", "tests"]
+include = ["src/**.py", "tests/**.py"]
 line-length = 88
 
-[tool.ruff.pydocstyle]
+# Lint Rules: https://docs.astral.sh/ruff/rules/
+[tool.ruff.lint]
+select = [
+    "F", # pyflakes
+    "E", # pycodestyle (Error)
+    "W", # pycodestyle (Warning)
+    "I", # isort
+    "D", # pydocstyle
+]
+ignore = [
+    "D100", # Missing docstring in public module
+    "D101", # Missing docstring in public class
+    "D104", # Missing docstring in public package
+    "D105", # Missing docstring in magic method
+    "D205", # 1 blank line required between summary line and description
+    "D400", # First line should end with a period
+    "D401", # First line should be in imperative mood
+    "D403", # First word of the first line should be properly capitalized
+    "D415", # First line should end with a period, question mark, or exclamation point
+]
+
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.poetry.dependencies]
-python = ">=3.8"
-pandas = ">=1.4.1"
-seaborn = ">=0.11.2"
-scipy = ">=1.9.0"
-
-[tool.poetry.group.dev.dependencies]
-ruff = ">=0.4.0"
-pytest = ">=7.1.1"
-pytest-cov = ">=3.0.0"
-
-[tool.poetry.scripts]
-ANIclustermap = "aniclustermap.aniclustermap:main"
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling==1.26.3"]
+build-backend = "hatchling.build"

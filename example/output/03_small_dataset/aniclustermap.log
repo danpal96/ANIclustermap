@@ -1,0 +1,33 @@
+2025-05-02 17:12:14 | INFO | Run ANIclustermap v2.0.0
+2025-05-02 17:12:14 | INFO | $ ANIclustermap -i ./input/small_dataset -o output/03_small_dataset --fig_width 15
+2025-05-02 17:12:14 | INFO | Operating System: linux
+2025-05-02 17:12:14 | INFO | Python Version: v3.9.19
+2025-05-02 17:12:14 | INFO | Parameter: indir=input/small_dataset
+2025-05-02 17:12:14 | INFO | Parameter: outdir=output/03_small_dataset
+2025-05-02 17:12:14 | INFO | Parameter: mode=fastani
+2025-05-02 17:12:14 | INFO | Parameter: thread_num=11
+2025-05-02 17:12:14 | INFO | Parameter: overwrite=False
+2025-05-02 17:12:14 | INFO | Parameter: fig_width=15
+2025-05-02 17:12:14 | INFO | Parameter: fig_height=10
+2025-05-02 17:12:14 | INFO | Parameter: dendrogram_ratio=0.15
+2025-05-02 17:12:14 | INFO | Parameter: cmap_colors=lime,yellow,red
+2025-05-02 17:12:14 | INFO | Parameter: cmap_gamma=1.0
+2025-05-02 17:12:14 | INFO | Parameter: cmap_ranges=None
+2025-05-02 17:12:14 | INFO | Parameter: cbar_pos=(0.02, 0.85, 0.04, 0.15)
+2025-05-02 17:12:14 | INFO | Parameter: annotation=False
+2025-05-02 17:12:14 | INFO | Parameter: annotation_fmt=.3g
+2025-05-02 17:12:14 | INFO | Run fastani between all-vs-all genomes
+2025-05-02 17:12:14 | INFO | Write list of 18 genome fasta file path
+2025-05-02 17:12:14 | INFO | => /tmp/tmpuujpa9iy/genome_fasta_list.txt
+2025-05-02 17:12:14 | INFO | $ fastANI --ql /tmp/tmpuujpa9iy/genome_fasta_list.txt --rl /tmp/tmpuujpa9iy/genome_fasta_list.txt -o /tmp/tmpuujpa9iy/fastani_result -t 11 --matrix
+2025-05-02 17:12:49 | INFO | Write all-vs-all genomes ANI matrix result
+2025-05-02 17:12:49 | INFO | => output/03_small_dataset/fastani_matrix.tsv
+2025-05-02 17:12:49 | INFO | Clustering fastani ANI matrix by scipy UPGMA method
+2025-05-02 17:12:49 | INFO | Write newick format cluster dendrogram
+2025-05-02 17:12:49 | INFO | => output/03_small_dataset/ANIclustermap_dendrogram.nwk
+2025-05-02 17:12:49 | INFO | Write clustered ANI matrix
+2025-05-02 17:12:49 | INFO | => output/03_small_dataset/ANIclustermap_matrix.tsv
+2025-05-02 17:12:49 | INFO | Using clustered ANI matrix, draw ANI clustermap by seaborn
+2025-05-02 17:12:49 | INFO | => output/03_small_dataset/ANIclustermap.png
+2025-05-02 17:12:49 | INFO | => output/03_small_dataset/ANIclustermap.svg
+2025-05-02 17:12:49 | INFO | Done (elapsed time: 34.98[s])

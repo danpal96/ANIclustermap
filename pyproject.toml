@@ -2,7 +2,7 @@
 name = "aniclustermap"
 dynamic = ["version"]
 description = "A tool for drawing ANI clustermap between all-vs-all microbial genomes"
-authors = [{ name = "moshi4", email = "" }]
+authors = [{ name = "moshi4" }]
 license = "MIT"
 readme = "README.md"
 keywords = [
@@ -17,13 +17,18 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 requires-python = ">=3.9"
-dependencies = ["pandas>=1.4.1", "seaborn>=0.11.2", "scipy>=1.9.0"]
+dependencies = [
+    "pandas>=1.4.1",
+    "seaborn>=0.11.2",
+    "scipy>=1.9.0",
+    "typer>=0.15.2",
+]
 
 [project.urls]
 repository = "https://github.com/moshi4/ANIclustermap/"
 
 [project.scripts]
-ANIclustermap = "aniclustermap.aniclustermap:main"
+ANIclustermap = "aniclustermap.scripts.aniclustermap:app"
 
 [tool.hatch.version]
 path = "src/aniclustermap/__init__.py"
@@ -72,5 +77,5 @@ ignore = [
 convention = "numpy"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3"]
 build-backend = "hatchling.build"
